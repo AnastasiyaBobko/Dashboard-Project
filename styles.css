@@ -1,0 +1,509 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    background-color: #ecf0f1;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 25%;
+    background-color: #2c3e52;
+    color: white;
+    transition: 0.3s;
+    overflow: hidden;
+}
+.sidebar.hidden {
+    width: 0;
+    padding: 0;
+}
+.toggle-button {
+    position: relative;
+    border: none;
+    background-color: #34495e;
+    color: white;
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    padding: 20px;
+    cursor: pointer;
+  
+  }
+
+  .toggle-button:hover {
+    background-color:  #4a627a;
+  }
+.open-btn {
+    display: none;
+    border: none;
+    background-color: red;
+    width: 60px;
+    height: 60px;
+    color: white;
+    cursor: pointer;
+  
+    
+}
+
+.month-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#month,
+#year {
+    width: 160px;
+    height: 30px;
+    background-color: #34495e;
+    color: white;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#month:hover, #year:hover {
+    background-color: #4a627a;
+}
+
+.nav-panel {
+    background-color: #2c3e52;
+    width: 100%;
+    height: 100%;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 40px 20px;
+
+}
+header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    color: #2c3e52;
+}
+.add-project-btn,
+.seed-btn,
+.add-employee-btn {
+    background-color: #2aa845;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 14px;
+    border-radius: 6px;
+}
+
+.project-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 360px;
+    max-width: 100%;
+    height: 100vh;
+    background-color: white;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    padding: 20px;
+    z-index: 1000;
+    overflow-y: auto;
+}
+.project-panel.open {
+    transform: translateX(0);
+}
+
+
+#add-project-form {
+display: flex;
+flex-direction: column;
+gap: 16px;
+
+}
+
+.input-data {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+
+#add-project-form-btns {
+    display: flex;
+    flex-direction: row;
+}
+
+.input-data input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.input-data input.invalid {
+    border-color: red;
+}
+
+.input-data input.valid {
+    border-color: green;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    min-height: 16px;
+}
+
+#add-project-form-btns {
+    display: flex;
+    gap: 10px;
+}
+
+.main-table {
+    background-color: #2c3e52;
+    color: white;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.main-table th {
+    border: 1px solid #dcdcdc;
+    padding: 10px;
+    text-align: left;
+    background-color: #2c3e52;
+    color: white;
+}
+
+.main-table td {
+    border: 1px solid #dcdcdc;
+    padding: 10px;
+    text-align: left;
+    background-color: white;
+    color: #2c3e52;
+}
+
+.table-filters {
+    display: flex;
+    gap: 12px;
+    margin: 16px 0;
+}
+th {
+    position: relative;
+}
+.th-content {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  
+}
+.th-text {
+    flex: 1;
+    white-space: nowrap;
+}
+
+
+.filter-input {
+    width: 100%;
+    margin-top: 6px;
+    padding: 4px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.filterable {
+    display: flex;
+    flex-direction: row;
+}
+.filterable span {
+width: 90%;
+}
+
+.table-filters input {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.sortable {
+
+    cursor: pointer;
+    user-select: none;
+
+}
+
+.delete-project-btn,
+.delete-employee-btn {
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    height: 20px;
+    border-radius: 5px;
+
+}
+
+.show-employees-btn,
+.assign-employee-btn {
+    background-color: #3398dc;
+    color: white;
+    border: none;
+
+    border-radius: 5px;
+}
+
+.sort-icon {
+    margin-left: 6px;
+    font-size: 12px;
+    opacity: 0.6;
+}
+.sortable.active {
+    background-color: #34495e;
+}
+
+.sortable.active .sort-icon {
+    opacity: 1;
+    font-weight: bold;
+}
+
+.over-capacity {
+    color: #c0392b;
+    font-weight: bold;
+}
+
+.main-table td.income-positive {
+    color: #1e8449;
+    font-weight: bold;
+}
+
+.main-table td.income-negative {
+    color: #c0392b;
+    font-weight: bold;
+}
+
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    padding: 12px 16px;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    background-color: #4a627a;
+}
+
+.nav-item.active {
+    background-color: #1f2f3d;
+    font-weight: bold;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.employee-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 360px;
+    max-width: 100%;
+    height: 100vh;
+    background-color: white;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    padding: 20px;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.employee-panel.open {
+    transform: translateX(0);
+}
+
+.assign-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.assign-popup.open {
+    display: flex;
+}
+
+.assign-popup-content {
+    background-color: white;
+    padding: 24px;
+    width: 360px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.assign-popup-actions {
+    display: flex;
+    gap: 10px;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.project-employees-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: 3000;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-employees-popup.open {
+    display: flex;
+}
+
+.project-employees-content {
+    background-color: white;
+    width: 700px;
+    max-width: 95%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 24px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.popup-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.employee-detail-card {
+    border: 1px solid #ddd;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+.employee-name-link {
+    background: none;
+    border: none;
+    color: #2980b9;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0;
+}
+
+.employee-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.filter-icon {
+    margin-left: 6px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: inherit;
+}
+
+.filter-popup {
+    position: absolute;
+    background: white;
+    color: #2c3e52;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 12px;
+    z-index: 4000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.filter-popup input,
+.filter-popup select {
+    width: 180px;
+    padding: 6px;
+    margin-bottom: 8px;
+}
+
+.filter-popup-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.filter-chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+}
+
+.filter-chip {
+    background: #dfe6e9;
+    border-radius: 16px;
+    padding: 6px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.seed-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: 4000;
+    align-items: center;
+    justify-content: center;
+}
+
+.seed-popup.open {
+    display: flex;
+}
+
+.seed-popup-content {
+    background-color: white;
+    width: 520px;
+    max-width: 95%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 24px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.seed-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.seed-month-btn {
+    align-self: center;
+}
