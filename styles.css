@@ -282,7 +282,15 @@ width: 90%;
     font-weight: bold;
 }
 
+.total-income .income-positive {
+    color: #1e8449;
+    font-weight: bold;
+}
 
+.total-income .income-negative {
+    color: #c0392b;
+    font-weight: bold;
+}
 .nav-list {
     list-style: none;
     padding: 0;
@@ -476,7 +484,6 @@ button:disabled {
     background-color: rgba(0, 0, 0, 0.45);
     z-index: 4000;
     align-items: center;
-    justify-content: center;
 }
 
 .seed-popup.open {
