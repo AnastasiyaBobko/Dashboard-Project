@@ -689,14 +689,17 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!totalIncomeEl) return;
     
         const total = calculateTotalIncome(projects);
+        const incomeClass = total >= 0
+            ? 'income-positive'
+            : 'income-negative';
     
         totalIncomeEl.innerHTML = `
             <strong>Total Estimated Income:</strong>
-            <span>$${total.toFixed(2)}</span>
+            <span class="${incomeClass}">
+                $${total.toFixed(2)}
+            </span>
         `;
     
-        totalIncomeEl.classList.toggle('income-positive', total >= 0);
-        totalIncomeEl.classList.toggle('income-negative', total < 0);
     }
     
     function calculateAge(birthdate) {
