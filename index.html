@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="sidebar">
+            <button class="toggle-button">&#9776;</button>
+    
+            <div class="month-selector">
+                <h2>Period</h2>
+    
+                <select id="month" name="month">
+                    <option value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+    
+                <select id="year" name="year">
+                    <option value="2025">2025</option>
+                    <option value="2026" selected>2026</option>
+                    <option value="2027">2027</option>
+                </select>
+            </div>
+    
+            <nav class="nav-panel">
+                <ul class="nav-list">
+                    <li class="nav-item active" data-tab="projects">Projects</li>
+                    <li class="nav-item" data-tab="employees">Employees</li>
+                </ul>
+            </nav>
+        </div>
+    
+        <button class="open-btn">&#8594;</button>
+    
+        <div class="main-container">
+       
+            <section id="projects-tab" class="tab-content active">
+                <header>
+                    <h1>Projects</h1>
+            
+                    <div class="add-buttons">
+                        <button type="button" class="add-project-btn">+ Add Project</button>
+                        <button type="button" class="seed-btn">Seed Data</button>
+                    </div>
+                </header>
+            
+                <div class="project-panel" id="project-panel" aria-hidden="true">
+                    <form id="add-project-form" novalidate>
+                        <h3>Add New Project</h3>
+            
+                        <div class="input-data">
+                            <label for="project-name">Project Name:*</label>
+                            <input type="text" id="project-name" name="project_name">
+                            <div class="error" id="project-name-error"></div>
+                        </div>
+            
+                        <div class="input-data">
+                            <label for="company-name">Company Name:*</label>
+                            <input type="text" id="company-name" name="company_name">
+                            <div class="error" id="company-name-error"></div>
+                        </div>
+            
+                        <div class="input-data">
+                            <label for="budget">Budget:*</label>
+                            <input type="text" id="budget" name="project_budget">
+                            <div class="error" id="budget-error"></div>
+                        </div>
+            
+                        <div class="input-data">
+                            <label for="employee-capacity">Employee Capacity:*</label>
+                            <input type="text" id="employee-capacity" name="employee_capacity">
+                            <div class="error" id="employee-capacity-error"></div>
+                        </div>
+            
+                        <div id="add-project-form-btns">
+                            <button type="submit" id="submit-btn" disabled>Add</button>
+                            <button type="button" id="cancel-btn">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            
+                <div class="table-container">
+                    <div id="project-filter-chips" class="filter-chips"></div>
+                    <table class="main-table">
+                        <thead>
+                            <tr>
+                                <th class="sortable filterable-column" data-sort="companyName" data-filter="companyName" data-label="Company Name">
+                                    <div class="th-content filterable">
+                                      <span class="th-text">  Company Name </span>   
+                                        <span class="sort-icon">⇅</span>
+                                        <button type="button" class="filter-icon">⌕</button>
+                                    </div>
+                                </th>
+            
+                                <th class="sortable filterable-column" data-sort="projectName" data-filter="projectName" data-label="Project Name">
+                                    <div class="th-content filterable">
+                                        <span class="th-text"> Project Name</span>  
+                                        <span class="sort-icon">⇅</span>
+                                        <button type="button" class="filter-icon">⌕</button>
+                                    </div>
+                                </th>
+            
+                                <th class="sortable" data-sort="budget">
+                                    <div class="th-content">
+                                        Budget <span class="sort-icon">⇅</span>
+                                    </div>
+                                </th>
+            
+                                <th class="sortable" data-sort="employeeCapacity">
+                                    <div class="th-content">
+                                        Employee Capacity <span class="sort-icon">⇅</span>
+                                    </div>
+                                </th>
+            
+                                <th>
+                                    <div class="th-content">
+                                        Employees
+                                    </div>
+                                </th>
+            
+                                <th class="sortable" data-sort="estimatedIncome">
+                                    <div class="th-content">
+                                        Estimated Income<span class="sort-icon">⇅</span>
+                                    </div>
+                                </th>
+            
+                                <th>
+                                    <div class="th-content">
+                                        Actions
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+         
+                        <tbody id="projects-tbody"></tbody>
+                    </table>
+                    <template id="project-row-template">
+                        <tr>
+                            <td class="col-company"></td>
+                            <td class="col-project"></td>
+                            <td class="col-budget"></td>
+                            <td class="col-capacity"></td>
+                            <td>
+                                <button type="button" class="show-employees-btn"></button>
+                            </td>
+                            <td class="col-income"></td>
+                            <td>
+                                <button type="button" class="delete-project-btn">Delete</button>
+                            </td>
+                        </tr>
+                    </template>
+                </div>
+
+                <div class="total-income">
+                    <strong>Total Estimated Income:</strong>
+                    <span>$0.00</span>
+                </div>
+            </section>
+    
+       
+            <section id="employees-tab" class="tab-content">
+                <header>
+                    <h1>Employees</h1>
+    
+                    <div class="add-buttons">
+                        <button type="button" class="add-employee-btn">+ Add Employee</button>
+                    </div>
+                </header>
+    
+                <div class="employee-panel" id="employee-panel" aria-hidden="true">
+                    <form id="add-employee-form" novalidate>
+                        <h3>Add New Employee</h3>
+    
+                        <div class="input-data">
+                            <label for="employee-name">Name:*</label>
+                            <input type="text" id="employee-name" name="employee_name">
+                            <div class="error" id="employee-name-error"></div>
+                        </div>
+
+                        <div class="input-data">
+                            <label for="employee-surname">Surname:*</label>
+                            <input type="text" id="employee-surname" name="employee_surname">
+                            <div class="error" id="employee-surname-error"></div>
+                        </div>
+
+                        <div class="input-data">
+                            <label for="employee-birthdate">Date of Birth:*</label>
+                            <input type="date" id="employee-birthdate" name="employee_birthdate">
+                            <div class="error" id="employee-birthdate-error"></div>
+                        </div>
+    
+                        <div class="input-data">
+                            <label for="employee-position">Position:*</label>
+                            <select name="employee_position" id="employee-position">
+                                <option>Select position</option>
+                                <option value="junior">Junior</option>
+                                <option value="middle">Middle</option>
+                                <option value="senior">Senior</option>
+                                <option value="lead">Lead</option>
+                                <option value="architect">Architect</option>
+                                <option value="bo">Bo</option>
+
+
+                            </select>
+                            <div class="error" id="employee-position-error"></div>
+                        </div>
+
+                        <div class="input-data">
+                            <label for="employee-salary">Salary:*</label>
+                            <input type="text" id="employee-salary" name="employee_salary">
+                            <div class="error" id="employee-salary-error"></div>
+                        </div>
+    
+                        <div id="add-project-form-btns">
+                            <button type="submit" id="employee-submit-btn" disabled>Add</button>
+                            <button type="button" id="employee-cancel-btn">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+    
+                <div class="table-container">
+                    <div id="employee-filter-chips" class="filter-chips"></div>
+                    <table class="main-table">
+                        <thead>
+                            <tr>
+                                <th class="sortable filterable-column" data-sort="name" data-filter="name" data-label="Name">
+                                    Name <span class="sort-icon">⇅</span>
+                                    <button type="button" class="filter-icon">⌕</button>
+                                </th>
+                                <th class="sortable filterable-column" data-sort="surname" data-filter="surname" data-label="Surname">
+                                    Surname <span class="sort-icon">⇅</span>
+                                    <button type="button" class="filter-icon">⌕</button>
+                                </th>
+                                <th class="sortable" data-sort="age">
+                                    Age <span class="sort-icon">⇅</span></th>
+                                <th class="sortable filterable-column" data-sort="position" data-filter="position" data-label="Position">
+                                    Position <span class="sort-icon">⇅</span>
+                                    <button type="button" class="filter-icon">⌕</button>
+                                </th>
+                                <th class="sortable" data-sort="salary">
+                                    Salary <span class="sort-icon">⇅</span></th>
+                                <th class="sortable" data-sort="estimatedPayment">Estimated Payment <span class="sort-icon">⇅</span></th>
+                                <th>Project</th>
+                                <th class="sortable" data-sort="projectedIncome">
+                                    Projected Income <span class="sort-icon">⇅</span></th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="employees-tbody"></tbody>
+                    </table>
+
+                    <template id="employee-row-template">
+                        <tr>
+                            <td class="col-name"></td>
+                            <td class="col-surname"></td>
+                            <td class="col-age"></td>
+                            <td class="col-position"></td>
+                            <td class="col-salary"></td>
+                            <td class="col-payment"></td>
+                            <td class="col-project"></td>
+                            <td class="col-income"></td>
+                            <td>
+                                <button type="button" class="availability-employee-btn">Availability</button>
+                                <button type="button" class="assign-employee-btn">Assign</button>
+                                <button type="button" class="delete-employee-btn">Delete</button>
+                            </td>
+                        </tr>
+                    </template>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    </div>
+    <div class="project-employees-popup" id="project-employees-popup" aria-hidden="true">
+        <div class="project-employees-content">
+            <button type="button" class="popup-close-btn" id="project-employees-close">×</button>
+    
+            <h3 id="project-employees-title">Employees</h3>
+    
+            <div id="project-employees-list"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
